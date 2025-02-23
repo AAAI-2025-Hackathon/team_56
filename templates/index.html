@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Machine-Assisted Geological Mapping and Analysis (MAGMA)</title>
+        <div id="globe-container" class="globe-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+        <!-- Update Font Awesome to version 6 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>    
+<!-- <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geological Explorer</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head> -->
 <body>
     <header class="page-header">
-        <h1 class="title">Geological Explorer</h1>
-        <p class="subtitle">Explore geological features using topographic and geological maps</p>
+        <h1 class="title">Machine-Assisted Geological Mapping and Analysis (MAGMA)</h1>
+        <p class="subtitle">Explore geological features using topographic and geological maps, powered by AI-driven analysis and visualization</p>
     </header>
 
     <!-- Main map section with synchronized views -->
@@ -70,6 +82,85 @@
         </div>
     </div>
 
+    <footer class="enhanced-footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <!-- Brand Section -->
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-mountain"></i>
+                        <span>MAGMA</span>
+                    </div>
+                    <p class="footer-description">
+                        Machine-Assisted Geological Mapping and Analysis: Exploring Earth's history through AI-powered insights.
+                    </p>
+                </div>
+    
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <nav class="footer-nav">
+                        <a href="javascript:void(0)" onclick="GeoExplorer.showMap()">
+                            <i class="fas fa-map"></i> Explore Maps
+                        </a>
+                        <a href="https://github.com/AAAI-2025-Hackathon/team_56/tree/main" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-book"></i> Documentation
+                        </a>
+                        <a href="https://www.olanrewajumuili.com/about" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-users"></i> About Team
+                        </a>
+                    </nav>
+                </div>
+    
+                <!-- Resources -->
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <nav class="footer-nav">
+                        <a href="https://macrostrat.org" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt"></i> Macrostrat Database
+                        </a>
+                        <a href="https://www.usgs.gov" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt"></i> USGS Resources
+                        </a>
+                        <a href="https://www.opentopomap.org" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt"></i> OpenTopoMap
+                        </a>
+                    </nav>
+                </div>
+    
+                <!-- Contact -->
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="footer-social">
+                        <a href="https://github.com/AAAI-2025-Hackathon/team_56" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:contact@example.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="#" aria-label="Website">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="footer-separator">
+                <div class="separator-line"></div>
+                <i class="fas fa-mountain"></i>
+                <div class="separator-line"></div>
+            </div>
+    
+            <div class="footer-bottom">
+                <p>&copy; 2025 AAAI Hackathon Team 56. All rights reserved.</p>
+                <div class="footer-links">
+                  
+     
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script>
         // Initialize the map and Street View
         async function initMap() {
@@ -110,5 +201,6 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxIORUYNZ1LoIzCB24oheabEoOmUqPKvs&libraries&callback=initMap">
     </script>
     <script src="{{ url_for('static', filename='js/maps.js') }}"></script>
+  
 </body>
 </html>
