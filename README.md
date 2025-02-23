@@ -76,8 +76,8 @@ The `model_setup.py` script will automatically check your system specifications:
 
 1. Clone the repository:
 ```bash
-git clone [repository-url]
-cd geological-explorer
+git clone https://github.com/AAAI-2025-Hackathon/team_56.git
+cd team_56
 ```
 
 2. Install Python dependencies:
