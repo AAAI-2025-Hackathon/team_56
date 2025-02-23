@@ -1,6 +1,6 @@
 ## Check-In
 
-* Title of your submission: GEL - Geological Explorer with LLM
+* Title of your submission: MAGMA: Machine-Assisted Geological Mapping and Analysis
 * Team Member: Olanrewaju Muili
 
 - [x] All team members agree to abide by the Hackathon Rules

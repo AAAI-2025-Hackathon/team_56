@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geological Explorer</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <header class="page-header">
+        <h1 class="title">Geological Explorer</h1>
+        <p class="subtitle">Explore geological features using topographic and geological maps</p>
+    </header>
+
+    <!-- Main map section with synchronized views -->
+    <div class="map-container">
+        <div class="map-panel">
+            <h2>Topographic Map</h2>
+            <div id="topo-map" class="map"></div>
+            <div class="map-controls">
+                <button id="measure-tool" class="control-button">📏 Measure</button>
+                <button id="layer-toggle" class="control-button">🗺️ Layers</button>
+            </div>
+        </div>
+        <div class="map-panel">
+            <h2>Geological Map</h2>
+            <div id="geo-map" class="map"></div>
+            <div class="map-controls">
+                <button id="export-data" class="control-button">💾 Export</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Information panels section -->
+    <div class="info-container">
+        <!-- Street View panel -->
+        <div class="street-view-panel">
+            <h2>Street View</h2>
+            <div id="street-view">
+                <p class="placeholder-text">Click on the map near a road to see Street View imagery</p>
+            </div>
+        </div>
+        
+        <!-- Geological information panel -->
+        <div class="info-panel">
+            <!-- Location information -->
+            <div class="coordinates-section">
+                <h2>Last Clicked Point</h2>
+                <div class="coordinate-display">
+                    <p>Latitude: <span id="lat">null</span></p>
+                    <p>Longitude: <span id="lng">null</span></p>
+                </div>
+            </div>
+            
+            <!-- Geological data display -->
+            <div class="geology-section">
+                <h2>Geological Information</h2>
+                <!-- Basic geological data -->
+                <div id="basic-geology" class="data-section">
+                    <h3>Basic Information</h3>
+                    <div id="rock-units"></div>
+                </div>
+                <!-- Detailed LLM-generated description -->
+                <div id="detailed-geology" class="data-section">
+                    <h3>Detailed Analysis</h3>
+                    <div id="detailed-description" class="description-text"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize the map and Street View
+        async function initMap() {
+            try {
+                // Import required libraries
+                const { Map } = await google.maps.importLibrary("maps");
+                const { StreetViewService, StreetViewPanorama } = await google.maps.importLibrary("streetView");
+                
+                console.log('Google Maps libraries loaded successfully');
+                
+                // Store these in the global scope for GeoExplorer to use
+                window.googleMapsLibraries = {
+                    Map,
+                    StreetViewService,
+                    StreetViewPanorama
+                };
+                
+                // Initialize GeoExplorer after libraries are loaded
+                GeoExplorer.initialize();
+                
+            } catch (error) {
+                console.error('Failed to load Google Maps libraries:', error);
+            }
+        }
+    </script>
+
+    <script>
+        function initMap() {
+            console.log('Google Maps API loaded');
+            // GeoExplorer will initialize itself when ready
+            GeoExplorer.initialize();
+        }
+    </script>
+
+    <!-- Essential scripts -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxIORUYNZ1LoIzCB24oheabEoOmUqPKvs&libraries&callback=initMap">
+    </script>
+    <script src="{{ url_for('static', filename='js/maps.js') }}"></script>
+</body>
+</html>
