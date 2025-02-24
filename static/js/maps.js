@@ -1,4 +1,4 @@
-const MAGMA = {
+const GeoExplorer = {
     state: {
         streetViewPanorama: null,
         streetViewService: null,
