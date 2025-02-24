@@ -1,31 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Machine-Assisted Geological Mapping and Analysis (MAGMA)</title>
-        <div id="globe-container" class="globe-container"></div>
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
-        <!-- Update Font Awesome to version 6 -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    </head>    
-<!-- <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geological Explorer</title>
+    <title>Machine-Assisted Geological Mapping and Analysis (MAGMA)</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
 <body>
     <header class="page-header">
         <h1 class="title">Machine-Assisted Geological Mapping and Analysis (MAGMA)</h1>
         <p class="subtitle">Explore geological features using topographic and geological maps, powered by AI-driven analysis and visualization</p>
     </header>
 
-    <!-- Main map section with synchronized views -->
     <div class="map-container">
         <div class="map-panel">
             <h2>Topographic Map</h2>
@@ -44,36 +33,27 @@
         </div>
     </div>
 
-    <!-- Information panels section -->
     <div class="info-container">
-        <!-- Street View panel -->
         <div class="street-view-panel">
             <h2>Street View</h2>
-            <div id="street-view">
-                <p class="placeholder-text">Click on the map near a road to see Street View imagery</p>
-            </div>
+            <div id="street-view"></div>
         </div>
         
-        <!-- Geological information panel -->
         <div class="info-panel">
-            <!-- Location information -->
             <div class="coordinates-section">
                 <h2>Last Clicked Point</h2>
                 <div class="coordinate-display">
-                    <p>Latitude: <span id="lat">null</span></p>
-                    <p>Longitude: <span id="lng">null</span></p>
+                    <p>Latitude: <span id="lat">--</span></p>
+                    <p>Longitude: <span id="lng">--</span></p>
                 </div>
             </div>
             
-            <!-- Geological data display -->
             <div class="geology-section">
                 <h2>Geological Information</h2>
-                <!-- Basic geological data -->
                 <div id="basic-geology" class="data-section">
                     <h3>Basic Information</h3>
                     <div id="rock-units"></div>
                 </div>
-                <!-- Detailed LLM-generated description -->
                 <div id="detailed-geology" class="data-section">
                     <h3>Detailed Analysis</h3>
                     <div id="detailed-description" class="description-text"></div>
@@ -96,7 +76,6 @@
                     </p>
                 </div>
     
-                <!-- Quick Links -->
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <nav class="footer-nav">
@@ -112,7 +91,6 @@
                     </nav>
                 </div>
     
-                <!-- Resources -->
                 <div class="footer-section">
                     <h4>Resources</h4>
                     <nav class="footer-nav">
@@ -128,7 +106,6 @@
                     </nav>
                 </div>
     
-                <!-- Contact -->
                 <div class="footer-section">
                     <h4>Connect</h4>
                     <div class="footer-social">
@@ -194,13 +171,24 @@
             GeoExplorer.initialize();
         }
     </script>
-
-    <!-- Essential scripts -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&libraries&callback=initMap">
+    <script>
+     
+        window.addEventListener('load', function() {
+            window.defaultLocation = {
+                lat: 39.8283,
+                lng: -98.5795
+            };
+
+            // Load Google Maps API
+            const script = document.createElement('script');
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&callback=initMap`;
+            script.async = true;
+            script.defer = true;
+            document.head.appendChild(script);
+        });
     </script>
+ 
     <script src="{{ url_for('static', filename='js/maps.js') }}"></script>
-  
 </body>
 </html>
